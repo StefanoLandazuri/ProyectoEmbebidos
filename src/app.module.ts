@@ -11,7 +11,7 @@ import { DatabaseModule } from './database/database.module';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: 3309,
       username: 'root',
       password: 'password',
       database: 'smart_lockers',
