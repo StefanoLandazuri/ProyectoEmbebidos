@@ -184,4 +184,11 @@ export class LockersService {
         });
         return await this.logRepository.save(log);
     }
+    async getAllLockerLogs(limit?: number): Promise<LockerLog[]> {
+      return this.logRepository.find({
+        relations: ['locker', 'user'],
+        order: { created_at: 'DESC' },
+        take: limit
+      });
+    }
 }

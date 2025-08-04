@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, ParseIntPipe, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, ParseIntPipe, Patch, Query } from '@nestjs/common';
 import { LockersService } from './lockers.service';
 import { CreateLockerDto } from './dto/create-locker.dto';
 import { UpdateLockerDto } from './dto/update-locker.dto';
 
 @Controller('lockers')
 export class LockersController {
-  constructor(private readonly lockersService: LockersService) {}
+  constructor(private readonly lockersService: LockersService) { }
 
   @Post()
   async create(@Body() createLockerDto: CreateLockerDto) {
@@ -20,6 +20,11 @@ export class LockersController {
   @Get('stats')
   async getStats() {
     return await this.lockersService.getLockerStats();
+  }
+
+  @Get('logs/all')
+  async getAllLogs(@Query('limit') limit?: number) {
+    return this.lockersService.getAllLockerLogs(limit);
   }
 
   @Get(':id')
